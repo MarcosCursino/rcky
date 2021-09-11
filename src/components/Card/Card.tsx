@@ -29,6 +29,17 @@ export function Card() {
       });
   }
 
+  function handleDelete(id:number) {
+    api
+      .delete(`funcionarios/${id}`)
+      .then((response) => {
+        handleData();
+      })
+      .catch((err) => {
+        console.error("ops! ocorreu um erro: " + err);
+      });
+  }
+
   useEffect(() => {
     handleData();
   }, []);
@@ -72,7 +83,7 @@ export function Card() {
               <img src={Editar} alt="Editar" />
             </button>
             <button type="button">
-              <img src={Lixo} alt="Excluir" />
+              <img src={Lixo} alt="Excluir" onClick={() => handleDelete(employee.id)} />
             </button>
           </div>
         </div>
