@@ -1,5 +1,13 @@
+import styles from "./Home.module.scss";
+
+import { Card } from "../components/Card/Card";
+
 export function Home() {
   return (
-   <div>Olá</div>
-  )
+    <>
+      <div className={styles.container}>
+        <Card />
+      </div>
+    </>
+  );
 }
