@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import InputMask from "react-input-mask";
 import Modal from "react-modal";
 import api from "../../service/api";
@@ -42,6 +43,10 @@ export function Header() {
       .post("funcionarios", data)
       .then(() => {
         closeModal();
+        toast.info("Usuário criado com sucesso!", {
+          autoClose: 2200,
+          hideProgressBar: true,
+        });
         history.push("/");
       })
       .catch((err) => {

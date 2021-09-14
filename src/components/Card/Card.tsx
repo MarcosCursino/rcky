@@ -1,16 +1,15 @@
 import { FormEvent, useState, useEffect } from "react";
 import InputMask from "react-input-mask";
 import Modal from "react-modal";
+import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
-
-import styles from "./Card.module.scss";
 import { toCurrency } from "../../utils/FormatedPrice";
-
 import api from "../../service/api";
 
 import Editar from "../../assets/Editar.svg";
 import Lixo from "../../assets/Lixo.svg";
 
+import styles from "./Card.module.scss";
 interface EmployeeProps {
   id: number;
   nome: string;
@@ -56,8 +55,12 @@ export function Card() {
   function handleDelete(id: number) {
     api
       .delete(`funcionarios/${id}`)
-      .then((response) => {
+      .then(() => {
         handleData();
+        toast.info("Usuário excluído com sucesso!", {
+          autoClose: 2200,
+          hideProgressBar: true,
+        });
       })
       .catch((err) => {
         console.error("ops! ocorreu um erro: " + err);
@@ -90,6 +93,10 @@ export function Card() {
       .put(`funcionarios/${id}`, data)
       .then(() => {
         closeModal();
+        toast.info("Usuário editado com sucesso!", {
+          autoClose: 2200,
+          hideProgressBar: true,
+        });
         setUpdateList(!updateLit);
       })
       .catch((err) => {
