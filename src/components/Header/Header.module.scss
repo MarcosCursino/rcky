@@ -32,7 +32,6 @@
     background-color: #007bff;
     cursor: pointer;
     transition: filter 0.2s;
-    
 
     &:hover {
       filter: brightness(0.9);
@@ -73,9 +72,10 @@
 
 .containerModal {
   h2 {
+    text-align: center;
     font-size: 20px;
     margin-bottom: 32px;
-    color: #3D3D4D;
+    color: #3d3d4d;
   }
 
   input {
@@ -115,5 +115,4 @@
       filter: brightness(0.9);
     }
   }
-
 }

@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import InputMask from "react-input-mask";
 import Modal from "react-modal";
 import api from "../../service/api";
 
@@ -7,10 +8,10 @@ import styles from "./Header.module.scss";
 import Add from "../../assets/add.svg";
 import Logo from "../../assets/logo.png";
 
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 export function Header() {
-  const history = useHistory();
+  // const history = useHistory();
 
   const [name, setName] = useState("");
   const [adress, setAdress] = useState("");
@@ -38,13 +39,11 @@ export function Header() {
       genero: genre,
     };
 
-    console.log("data", data);
-
     api
       .post("funcionarios", data)
       .then(() => {
         closeModal();
-        history.push("/");
+        window.location.href = "/";
       })
       .catch((err) => {
         console.error("ops! ocorreu um erro: " + err);
@@ -61,7 +60,7 @@ export function Header() {
         ariaHideApp={false}
       >
         <form className={styles.containerModal} onSubmit={handleCreateEmployee}>
-          <h2>Cadastrar funcionario</h2>
+          <h2>Cadastrar funcionário</h2>
 
           <input
             type="text"
@@ -77,9 +76,9 @@ export function Header() {
             onChange={(e) => setAdress(e.target.value)}
           />
 
-          <input
-            type="text"
+          <InputMask
             placeholder="Data de Nascimento"
+            mask="99/99/9999"
             value={birth}
             onChange={(e) => setBirth(e.target.value)}
           />
@@ -87,7 +86,6 @@ export function Header() {
           <input
             type="number"
             placeholder="Salário"
-            value={wage}
             onChange={(e) => setWage(Number(e.target.value))}
           />
 
