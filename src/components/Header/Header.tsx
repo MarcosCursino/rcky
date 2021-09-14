@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import { useHistory } from "react-router-dom";
 import InputMask from "react-input-mask";
 import Modal from "react-modal";
 import api from "../../service/api";
@@ -8,10 +9,8 @@ import styles from "./Header.module.scss";
 import Add from "../../assets/add.svg";
 import Logo from "../../assets/logo.png";
 
-// import { useHistory } from "react-router-dom";
-
 export function Header() {
-  // const history = useHistory();
+  const history = useHistory();
 
   const [name, setName] = useState("");
   const [adress, setAdress] = useState("");
@@ -43,7 +42,7 @@ export function Header() {
       .post("funcionarios", data)
       .then(() => {
         closeModal();
-        window.location.href = "/";
+        history.push("/");
       })
       .catch((err) => {
         console.error("ops! ocorreu um erro: " + err);

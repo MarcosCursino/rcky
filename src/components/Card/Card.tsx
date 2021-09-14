@@ -1,6 +1,8 @@
 import { FormEvent, useState, useEffect } from "react";
 import InputMask from "react-input-mask";
 import Modal from "react-modal";
+import { useLocation } from "react-router-dom";
+
 import styles from "./Card.module.scss";
 import { toCurrency } from "../../utils/FormatedPrice";
 
@@ -19,6 +21,7 @@ interface EmployeeProps {
 }
 
 export function Card() {
+  const location = useLocation();
   const [employees, setEmployees] = useState<EmployeeProps[]>([]);
 
   const [id, setId] = useState(0);
@@ -96,7 +99,7 @@ export function Card() {
 
   useEffect(() => {
     handleData();
-  }, [updateLit]);
+  }, [updateLit, location]);
 
   return (
     <>
