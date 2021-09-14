@@ -43,6 +43,7 @@ export function Header() {
       .post("funcionarios", data)
       .then(() => {
         closeModal();
+        clearState();
         toast.info("Usuário criado com sucesso!", {
           autoClose: 2200,
           hideProgressBar: true,
@@ -52,6 +53,14 @@ export function Header() {
       .catch((err) => {
         console.error("ops! ocorreu um erro: " + err);
       });
+  }
+
+  function clearState(){
+    setName("");
+    setAdress("");
+    setBirth("");
+    setWage(0);
+    setGenre("")
   }
 
   return (
